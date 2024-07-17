@@ -1,0 +1,93 @@
+<%- include("partials/header") -%>
+<div class="header">
+    <h1 class="mt-3">Money Tracker Web App</h1>
+    <img src="/images/exchanging.png" class="image-header">
+</div>
+
+<div class="card shadow border main-section" style="width: 20rem;" >
+
+    <div class="sub-header ms-auto me-auto">
+        <div class="card p-2 m-1" >
+            <p style="text-align: center;">You will get <br><span class="text-danger fw-bold">₹<%= home_current_money_receive %></span></p>
+        </div>
+        
+        <div class="card p-2 m-1" >
+            <p style="text-align: center;">You will give <br><span class="text-success fw-bold">₹<%= home_current_money_send %></span></p>
+        </div>
+    </div>
+
+    <div class="sub-header ms-auto me-auto">
+        <div class="card p-2 m-1" >
+            <p style="text-align: center;">Total money got <br><span class="text-danger fw-bold">₹<%= home_total_money_receive %></span></p>
+        </div>
+        
+        <div class="card p-2 m-1" >
+            <p style="text-align: center;">Total money gave <br><span class="text-success fw-bold">₹<%= home_total_money_send %></span></p>
+        </div>
+    </div>
+    
+    
+    <h2>Transactions</h2>
+    <hr>
+    <% transactions.forEach(function(transaction){ %>
+        <p class="each-transactions"><%= transaction.operation %> ₹<%= transaction.amount %> <%= transaction.user %></p>
+        <hr>
+    <% }); %>
+
+
+    <!--Modal-->
+    <span class="mt-3" style="text-align: center;">
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#sendModal">Send</button>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#receiveModal">Receive</button>
+    </span>
+
+    <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sendModalLabel">Send Money</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/send" method="post">
+                <div class="modal-body">
+                        <p style="display: inline-block;">Send ₹</p><input type="text" name="amount"><p style="display: inline-block;">to </p>
+                        <input type="text" name="sendto">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Send</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="receiveModal" tabindex="-1" role="dialog" aria-labelledby="receiveModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="receiveModalLabel">Receive Money</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/receive" method="post">
+                <div class="modal-body">
+                    <p style="display: inline-block;">Received ₹ </p><input type="text" name="amount"><p style="display: inline-block;">from </p>
+                    <input type="text" name="receiveFrom">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Receive</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<%- include("partials/footer"); -%>

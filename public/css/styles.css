@@ -1,0 +1,35 @@
+.main-section{
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    padding: 2%;
+}
+
+
+hr{
+    margin: 0;
+    padding: 0;
+}
+
+.each-transactions{
+    margin: 0;
+    padding: 0;
+}
+
+
+.sub-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.add-friends-button{
+    margin-left: 25%;
+}
+
+.header{
+    text-align: center;
+}
+.image-header{
+    width: 10%;
+}
